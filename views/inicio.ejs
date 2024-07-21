@@ -43,6 +43,21 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             background-color: rgb(208, 240, 237); /* Fondo blanco para la tarjeta */
         }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -68,18 +83,18 @@
                 <p><strong>Estado:</strong> <%= data.estado %></p>
                 <!-- Muestra más campos según la respuesta de la API -->
             </div>
-            <% } else if (ruc) { %>
-                <div class="card card-custom">
+        <% } else if (ruc) { %>
+            <div class="card card-custom">
                 <h2>Información del Contribuyente</h2>
                 <p><strong>El nro° de C.I. <%= ruc %> no es contribuyente</strong></p>
                 <!-- Muestra más campos según la respuesta de la API -->
             </div>
         <% }%>
-        
     </div>
+
     <div class="footer">
-        <p>Desarrollado por Alex Sandoval</p>
-        <p><a href="https://www.linkedin.com/in/alex-sandoval-56a64421b/" target="_blank">LinkedIn</a></p>
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        <p>Desarrollado por <a href="https://www.linkedin.com/in/tu-linkedin" target="_blank">Alex Sandoval</a></p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
