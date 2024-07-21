@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000; // Usa el puerto proporcionado por el ent
 
 // Configuración de EJS
 app.set('view engine', 'ejs');
-app.set('views', './view'); // Asegúrate de que tus vistas estén en el directorio correcto
+app.set('views', './views'); // Asegúrate de que tus vistas estén en el directorio correcto
 
 // Ruta para la página de búsqueda
 app.get('/', (req, res) => {
