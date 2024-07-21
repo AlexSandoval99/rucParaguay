@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Contribuyentes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* Evita el scroll por el desenfoque */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('http://tiposdecontabilidad.com/wp-content/uploads/2013/08/tipos-de-contabilidad-1024x686.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            filter: blur(5px); /* Aplica el desenfoque a la imagen de fondo */
+            -webkit-filter: blur(5px); /* Para navegadores WebKit como Safari */
+            z-index: -1; /* Envía el elemento detrás del contenido */
+        }
+
+        .container {
+            position: relative;
+            padding-top: 50px; /* Espacio superior para el contenedor */
+        }
+
+        .card-custom {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: rgb(208, 240, 237); /* Fondo blanco para la tarjeta */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card card-custom">
+            <h1 class="card-title text-center">Buscar Contribuyentes</h1>
+            <div class="card-body">
+                <form action="/contribuyentes" method="get">
+                    <div class="form-group">
+                        <input type="text" name="document_number" class="form-control" placeholder="Ingrese numero de Cédula">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Buscar</button>
+                    <a href="/" class="btn btn-secondary btn-block">Limpiar</a>
+                </form>
+            </div>
+        </div>
+        <% if (data) { %>
+            <div class="card card-custom">
+                <h2>Información del Contribuyente</h2>
+                <p><strong>Número de Documento:</strong> <%= data.ruc %></p>
+                <p><strong>RUC:</strong> <%= data.ruc %></p>
+                <p><strong>Nombre:</strong> <%= data.razonSocial %></p>
+                <p><strong>Estado:</strong> <%= data.estado %></p>
+                <!-- Muestra más campos según la respuesta de la API -->
+            </div>
+            <% } else if (ruc) { %>
+                <div class="card card-custom">
+                <h2>Información del Contribuyente</h2>
+                <p><strong>El nro° de C.I. <%= ruc %> no es contribuyente</strong></p>
+                <!-- Muestra más campos según la respuesta de la API -->
+            </div>
+        <% }%>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
