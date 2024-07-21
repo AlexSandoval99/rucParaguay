@@ -5,16 +5,16 @@ const port = process.env.PORT || 3000; // Usa el puerto proporcionado por el ent
 
 // Configuración de EJS
 app.set('view engine', 'ejs');
-app.set('views', './views'); // Asegúrate de que tus vistas estén en el directorio correcto
+app.set('views', './views'); // Asegúrate de que el directorio sea "views"
 
 // Ruta para la página de búsqueda
 app.get('/', (req, res) => {
-  res.render('inicio', { data: null, ruc:null }); // Renderiza la vista con datos nulos por defecto
+  res.render('inicio', { data: null, ruc: null }); // Asegúrate de que el archivo se llame "inicio.ejs"
 });
 
 // Ruta para buscar contribuyentes
 app.get('/contribuyentes', async (req, res) => {
-  const ruc = req.query.document_number; // Obtén el número de documento del parámetro de consulta
+  const ruc = req.query.document_number;
 
   if (!ruc) {
     return res.status(400).send('Número de documento no proporcionado');
@@ -23,15 +23,15 @@ app.get('/contribuyentes', async (req, res) => {
     const response = await axios.get(`https://turuc.com.py/api/contribuyente/${ruc}`);
     console.log(ruc);
     res.render('inicio', {
-      data: response.data.data, // Asegúrate de que `response.data.data` es la estructura correcta
+      data: response.data.data,
       ruc: ruc
     });
   } catch (error) {
     console.error('Error al obtener los contribuyentes:', error.message);
     res.render('inicio', {
-        data: null, // Asegúrate de que `response.data.data` es la estructura correcta
-        ruc: ruc
-      });
+      data: null,
+      ruc: ruc
+    });
   }
 });
 
