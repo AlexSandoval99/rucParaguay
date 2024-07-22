@@ -1,16 +1,15 @@
 const express = require('express');
-const path = require('path'); // Asegúrate de importar el módulo path
+const path = require('path'); 
 const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3000; // Usa el puerto proporcionado por el entorno o 3000 para local
 
 // Configuración de EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Asegúrate de usar path.join para evitar problemas de ruta
+app.set('views', path.join(__dirname, 'views'));
 
-// Ruta para la página de búsqueda
 app.get('/', (req, res) => {
-  res.render('inicio', { data: null, ruc: null }); // Asegúrate de que el archivo se llame "inicio.ejs"
+  res.render('inicio', { data: null, ruc: null });
 });
 
 // Ruta para buscar contribuyentes
@@ -22,7 +21,6 @@ app.get('/contribuyentes', async (req, res) => {
   }
   try {
     const response = await axios.get(`https://turuc.com.py/api/contribuyente/${ruc}`);
-    console.log(ruc);
     res.render('inicio', {
       data: response.data.data,
       ruc: ruc
